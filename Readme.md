@@ -1,0 +1,1 @@
+A web application that provides online learning resources for student’s learning. The platform would enable the lecturer to upload course materials and videos and have insights on the number of students that study or access these materials.
