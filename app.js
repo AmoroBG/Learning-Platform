@@ -23,7 +23,7 @@ app.use(express.json())
 
 // ROUTES
 app.get("/", function(req, res){
-  res.sendFile("index.html")
+  res.send("Hello World! and this is the Learning Platform")
 })
 
 
