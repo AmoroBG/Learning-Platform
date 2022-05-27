@@ -4,4 +4,4 @@ server/
 
 
 # Files
-config.env
+.env

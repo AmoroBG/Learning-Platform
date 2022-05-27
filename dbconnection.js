@@ -1,15 +1,8 @@
-const path = require('path')
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-
-// LOAD CONFIG
-dotenv.config({
-  path: path.resolve(__dirname, './config.env'),
-})
-
+const config=require('./config')
 // Connecting to Database
 const dbconnect = mongoose
-  .connect(process.env.DATABASE_URI, {
+  .connect(config.dbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -17,7 +10,7 @@ const dbconnect = mongoose
     console.log('Successfully connected to db')
   })
   .catch(function (err) {
-    console.log(err)
+    console.log('Database connection failed: ', err)
   })
 
 module.exports = dbconnect

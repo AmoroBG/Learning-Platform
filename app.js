@@ -1,12 +1,16 @@
 // REQUIRE PACKAGES
 const express = require('express')
-const path=require("path")
-const dotenv = require('dotenv')
+const path = require('path')
+
 // INTERNAL MODULES
+const config=require('./config')
 const dbconnect = require("./dbconnection")
+const userRoutes=require("./routes/user")
+const taskRoutes=require("./routes/course")
 
 // LOAD CONFIG
-dotenv.config({ path: 'config.env' })
+const dotenv = require('dotenv')
+dotenv.config()
 
 // INITIALIZE APP
 const app = express()
@@ -17,18 +21,25 @@ app.use(express.static(path.join(__dirname, 'public')))
 dbconnect
 
 // MIDDLEWARE
+// EJS
+app.set('view engine', 'ejs');
 // body-parser
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // ROUTES
 app.get("/", function(req, res){
-  res.send("Hello World! and this is the Learning Platform")
+  res.render("index")
 })
+app.use("/users", userRoutes)
+app.use("/tasks", taskRoutes)
 
-
+// 404 ERROR Page
+app.use(function(req, res) {
+  res.send("<h1>404: Page not found</h1>")
+})
 // SERVER
-const PORT = process.env.PORT || 3000
+const PORT = config.port
 app.listen(PORT, function () {
   console.log(`Server started on port ${PORT}`)
 })
