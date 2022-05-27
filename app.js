@@ -6,7 +6,7 @@ const path = require('path')
 const config=require('./config')
 const dbconnect = require("./dbconnection")
 const userRoutes=require("./routes/user")
-const taskRoutes=require("./routes/course")
+const courseRoutes=require("./routes/course")
 
 // LOAD CONFIG
 const dotenv = require('dotenv')
@@ -32,7 +32,7 @@ app.get("/", function(req, res){
   res.render("index")
 })
 app.use("/users", userRoutes)
-app.use("/tasks", taskRoutes)
+app.use("/courses", courseRoutes)
 
 // 404 ERROR Page
 app.use(function(req, res) {
